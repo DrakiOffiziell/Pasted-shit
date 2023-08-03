@@ -8,7 +8,7 @@ if async_http.have_access() then
 	local SCRIPT_VERSION = '0.1'
 	local resp = false
 	async_http.init(
-		'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/Best Money Lua pasted by draki_offiziell',
+		'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/version',
 		nil,
 		function(body, headers, status_code)
 			if soup.version_compare(SCRIPT_VERSION, body) == -1 then
@@ -18,7 +18,7 @@ if async_http.have_access() then
 					$"\"{body}\" is available, you are currently on \"{SCRIPT_VERSION}\".",
 					function()
 						async_http.init(
-						'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/version',
+						'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/Best Money Lua pasted by draki_offiziell.lua',
 						nil,
 						function(body_)
 							local f = assert(io.open($'{filesystem.scripts_dir()}{SCRIPT_RELPATH}', 'wb'))
