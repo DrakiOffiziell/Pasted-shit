@@ -5,7 +5,7 @@
 
 
 if async_http.have_access() then
-	local SCRIPT_VERSION = '0.3'
+	local SCRIPT_VERSION = '0.4'
 	local resp = false
 	async_http.init(
 		'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/version',
@@ -55,7 +55,7 @@ local function SetGlobalInt(address, value)
 end
 
 if not SCRIPT_SILENT_START then
-    util.toast("Pasted by Draki")
+    util.toast("Pasted by Draki v0.4")
 end
 
 
@@ -247,6 +247,14 @@ end
 
 SEC = ENTITY.SET_ENTITY_COORDS
 
+function RequestControl(entity)
+    local tick = 0
+    while not NETWORK.NETWORK_HAS_CONTROL_OF_ENTITY(entity) and tick < 100000 do
+        util.yield()
+        NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(entity)
+        tick = tick + 1
+    end
+end
 
 local function player(pid)
     menu.divider(menu.player_root(pid), "Money things")
@@ -302,7 +310,22 @@ local function player(pid)
         OBJECT.CREATE_AMBIENT_PICKUP(-1009939663, coords.x, coords.y, coords.z, 0, 1, random_hash, false, true)
         util.yield(500)
 	end)
-end 
+
+    menu.toggle_loop(menu.player_root(pid), "gain checkpoints", {""}, "", function(toggled)
+        local p = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
+        local c = ENTITY.GET_ENTITY_COORDS(p)
+        if PED.IS_PED_IN_ANY_VEHICLE(p) then
+            local veh = PED.GET_VEHICLE_PED_IS_IN(p, true)
+            RequestControl(veh)
+            local dblip = HUD.GET_NEXT_BLIP_INFO_ID(431)
+            local cdblip = HUD.GET_BLIP_COORDS(dblip)
+            ENTITY.SET_ENTITY_COORDS(veh, cdblip.x, cdblip.y, cdblip.z, false, false, false, false)
+            util.yield(1500)
+        else
+            util.toast(players.get_name(pid).. " Has to be in a vehicle")
+        end
+    end)
+end
 
 
 
