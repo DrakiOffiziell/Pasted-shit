@@ -342,8 +342,6 @@ util.toast("Successfully deleted reports, you are safe now!") -- ;)
     STATS.STAT_SET_INT("MPPLY_OVERALL_CHEAT", 0)
 end)
 
-menu.divider(root, "Test")
-
 menu.divider(root, "Money Loops")
 
 function trigger_transaction(hash, amount)
