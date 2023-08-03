@@ -5,7 +5,7 @@
 
 
 if async_http.have_access() then
-	local SCRIPT_VERSION = '0.2'
+	local SCRIPT_VERSION = '0.1'
 	local resp = false
 	async_http.init(
 		'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/version',
