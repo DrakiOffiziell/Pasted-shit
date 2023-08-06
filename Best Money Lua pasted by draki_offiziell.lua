@@ -5,7 +5,7 @@
 
 
 if async_http.have_access() then
-	local SCRIPT_VERSION = '0.4'
+	local SCRIPT_VERSION = '0.5'
 	local resp = false
 	async_http.init(
 		'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/version',
@@ -399,6 +399,30 @@ menu.toggle_loop(menu.my_root(),"40m Loop (slow)", {}, "", function()
 	trigger_transaction(0x314FB8B0, 1000000)
 	trigger_transaction(0x4B6A869C, 2000000)
 	util.yield(40000)
+end)
+
+local tweaks_root = menu.list(menu.my_root(), "Money Recovery 100% real", {}, "God's plan")
+money_delay = 3000
+menu.slider(tweaks_root, "Delay", {}, "Money delay", 50, 10000, 3000, 1, function(s)
+    money_delay = s
+end)
+money_amt = 30000000
+menu.slider(tweaks_root, "Amount", {}, "Money amount", 0, 10000000000, 30000000, 1, function(s)
+    money_amt = s
+end)
+money_random = true
+menu.toggle(tweaks_root, "Random", {}, "Randomize money amount", function(on)
+    money_random = on
+end, true)
+menu.toggle_loop(tweaks_root, "Enable ;) (Undetected)", {}, "100% real and undetected money loop 100% not just locally", function(on)
+    local amt
+    if money_random then 
+        amt = math.random(100000000, 300000000)
+    else
+        amt = money_amt
+    end
+    HUD.CHANGE_FAKE_MP_CASH(0, amt)
+    util.yield(money_delay)
 end)
 
 menu.action(menu.my_root(), "Biggest Money Explosion in your bank/wallet (idk how safe)", {}, "PRESS ONLY ONCE!!! or more idk", function()
