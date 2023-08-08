@@ -5,7 +5,7 @@
 
 
 if async_http.have_access() then
-	local SCRIPT_VERSION = '0.5'
+	local SCRIPT_VERSION = '0.6'
 	local resp = false
 	async_http.init(
 		'raw.githubusercontent.com/DrakiOffiziell/Pasted-shit/main/version',
@@ -257,7 +257,7 @@ function RequestControl(entity)
 end
 
 local function player(pid)
-    menu.divider(menu.player_root(pid), "Money things")
+    menu.divider(menu.player_root(pid), "Money things (SAFE)")
 
 	moneydrop = menu.list(menu.player_root(pid), "Money Drop settings", {""}, "")
 
@@ -366,7 +366,7 @@ util.toast("Successfully deleted reports, you are safe now!") -- ;)
 end)
 
 
-menu.divider(root, "Money Loops")
+menu.divider(root, "Money Loops (DETECTED; DONT USE)")
 
 function trigger_transaction(hash, amount)
     SetGlobalInt(4536533+ 1, 2147483646)
@@ -380,7 +380,7 @@ function trigger_transaction(hash, amount)
 	
 	
    
-menu.toggle_loop(menu.my_root(),"1M Loop (RECOMMENDED)", {}, "", function()
+menu.toggle_loop(menu.my_root(),"1M Loop (DONT USE)", {}, "", function()
     trigger_transaction(0x615762F1, 1000000)
 	util.yield()
 end)
@@ -401,7 +401,7 @@ menu.toggle_loop(menu.my_root(),"40m Loop (slow)", {}, "", function()
 	util.yield(40000)
 end)
 
-local tweaks_root = menu.list(menu.my_root(), "Money Recovery 100% real", {}, "God's plan")
+local tweaks_root = menu.list(menu.my_root(), "Money Recovery 100% real (still undetected ;)", {}, "God's plan")
 money_delay = 3000
 menu.slider(tweaks_root, "Delay", {}, "Money delay", 50, 10000, 3000, 1, function(s)
     money_delay = s
@@ -414,7 +414,7 @@ money_random = true
 menu.toggle(tweaks_root, "Random", {}, "Randomize money amount", function(on)
     money_random = on
 end, true)
-menu.toggle_loop(tweaks_root, "Enable ;) (Undetected)", {}, "100% real and undetected money loop 100% not just locally", function(on)
+menu.toggle_loop(tweaks_root, "Enable ;) (Undetected real real)", {}, "100% real and undetected money loop 100% not just locally", function(on)
     local amt
     if money_random then 
         amt = math.random(100000000, 300000000)
@@ -425,7 +425,7 @@ menu.toggle_loop(tweaks_root, "Enable ;) (Undetected)", {}, "100% real and undet
     util.yield(money_delay)
 end)
 
-menu.action(menu.my_root(), "Biggest Money Explosion in your bank/wallet (idk how safe)", {}, "PRESS ONLY ONCE!!! or more idk", function()
+menu.action(menu.my_root(), "Biggest Money Explosion in your bank/wallet ", {}, "NOTZ SAFE", function()
     trigger_transaction(util.joaat("SERVICE_EARN_JOB_BONUS"), 15000000)
     trigger_transaction(util.joaat("SERVICE_EARN_BEND_JOB"), 15000000)
     trigger_transaction(util.joaat("SERVICE_EARN_GANGOPS_AWARD_MASTERMIND_4"), 15000000    )    
@@ -575,7 +575,7 @@ end)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-menu.divider(root, "Special Money things (DETECTED)")
+menu.divider(root, "Special Money things (DETECTED EVERYTHING)")
 
 -- dbase = facility
 -- businesshub = bunker
@@ -1462,7 +1462,7 @@ menu.toggle_loop(menu.my_root(),"Skip warning Message v2 (RECOMMENDED)", {}, "wo
 
 
 local obj = {expl = false}	
-menu.toggle_loop(menu.my_root(), "Money Gun", {""}, "", function(toggled)
+menu.toggle_loop(menu.my_root(), "Money Gun (SAFE)", {""}, "", function(toggled)
     local hash = util.joaat("prop_money_bag_01")
     Streament(hash)
     if PLAYER.IS_PLAYER_FREE_AIMING(players.user()) and not PED.IS_PED_IN_ANY_VEHICLE(players.user_ped()) then
@@ -1491,7 +1491,7 @@ menu.toggle_loop(menu.my_root(), "Money Gun", {""}, "", function(toggled)
     end
 end)
 
-menu.divider(root, "Money Gone")
+menu.divider(root, "Money Gone ")
 
 local function SetGlobalInt(address, value)
     memory.write_int(memory.script_global(address), value)
@@ -1518,7 +1518,7 @@ end
 local money_to_remove = 1000000
 local money_to_remove_delay = 1000
 
-MoneyRemover = menu.list(root, "Money Remover settings", {""}, "")
+MoneyRemover = menu.list(root, "Money Remover settings (SAFE)", {""}, "")
 
 menu.click_slider(MoneyRemover, "Delay (ms)", {}, "", 100, 100000, money_to_remove_delay, 100, function(val)
     money_to_remove_delay = val
